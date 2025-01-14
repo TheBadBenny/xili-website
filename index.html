@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <!-- Basic Meta Tags -->
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -11,6 +12,9 @@
     
     <!-- Google Fonts (Roboto) -->
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+    
+    <!-- AOS Library CSS -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" rel="stylesheet">
     
     <!-- SEO Meta Tags -->
     <meta name="description" content="Xili - Your ultimate mobile application. Download it now on App Store and Google Play.">
@@ -23,33 +27,91 @@
     <meta property="og:image" content="https://your-domain.com/assets/og-image.jpg">
     <meta property="og:url" content="https://your-username.github.io/xili-landing/">
     <meta property="og:type" content="website">
-    </head>
+</head>
 <body>
     <!-- Navbar -->
-    <nav class="navbar" role="navigation" aria-label="Main Navigation">
-        <h1 class="logo">Xili</h1>
-    </nav>
+<!-- Navbar -->
+<nav class="navbar" role="navigation" aria-label="Main Navigation">
+    <h1 class="logo">Xili</h1>
+    <button class="hamburger" aria-label="Toggle Navigation" aria-expanded="false">
+        <span class="hamburger-icon"></span>
+    </button>
+    <ul class="nav-links">
+        <li><a href="#">Home</a></li>
+        <li><a href="#features">Features</a></li>
+        <li><a href="#about">About Us</a></li>
+        <li><a href="#download">Download</a></li>
+    </ul>
+</nav>
+    
+    <!-- Hero Section -->
+    <section class="hero-section" id="hero">
+        <main class="main-content" id="download">
+            <!-- CTA Section -->
+            <section class="cta-section" data-aos="fade-up">
+                <h2 class="cta-title" data-aos="fade-right">Authenticity Starts Here</h2>
+                <p class="cta-description" data-aos="fade-left">
+                    In today's social media landscape, rampant posturing and inauthenticity have become the norm. While some apps, like BeReal, have
+                    attempted to combat these trends, they've fallen short.
+                </p>
+            </section>
+            
+            <!-- Download Buttons -->
+            <div class="buttons" data-aos="zoom-in">
+                <a href="https://apps.apple.com/app/idYOUR_APP_ID" target="_blank" aria-label="Download on the App Store">
+                    <img src="assets/app-store.svg" alt="Download on the App Store" loading="lazy">
+                </a>
+                <a href="https://play.google.com/store/apps/details?id=YOUR_PACKAGE_NAME" target="_blank" aria-label="Get it on Google Play">
+                    <img src="assets/play-store.svg" alt="Get it on Google Play" loading="lazy">
+                </a>
+            </div>
+        </main>
+    </section>
+    
+    <!-- Features Section -->
+<section class="features-section" id="features">
+    <div class="features-content" data-aos="fade-up">
+        <h2 class="section-title">Features</h2>
+        <div class="features-grid">
+            <div class="feature-item" data-aos="zoom-in" data-aos-delay="100">
+                <img src="assets/post-content.svg" alt="Post Content" class="feature-icon">
+                <h3>Post Semi-Random Content</h3>
+                <p>Create and share authentic moments with content that reflects your true self.</p>
+            </div>
+            <div class="feature-item" data-aos="zoom-in" data-aos-delay="200">
+                <img src="assets/reroll.svg" alt="Rerolls" class="feature-icon">
+                <h3>Daily Rerolls</h3>
+                <p>Get rerolls each day to refresh your posting opportunities and keep the content flowing.</p>
+            </div>
+            <div class="feature-item" data-aos="zoom-in" data-aos-delay="300">
+                <img src="assets/rate-posts.svg" alt="Rate Posts" class="feature-icon">
+                <h3>Rate Other Posts</h3>
+                <p>Engage with the community by rating and providing feedback on others' posts.</p>
+            </div>
+        </div>
+    </div>
+</section>
+    
+    <!-- About Us Section -->
+    <section class="about-section" id="about">
+        <div class="about-content" data-aos="fade-up">
+            <h2 class="section-title">About Us</h2>
+            <div class="about-grid">
+                <div class="about-item" data-aos="fade-right" data-aos-delay="100">
+                    <img src="assets/team.svg" alt="Our Team" class="about-image">
+                </div>
+                <div class="about-item" data-aos="fade-left" data-aos-delay="200">
+                    <h3>Our Mission</h3>
+                    <p>At Xili, our mission is to foster genuine connections in the digital age. We believe in authentic interactions and providing a platform where users can express themselves freely without the pressures of constant performance.</p>
+                    <h3>Our Team</h3>
+                    <p>We are a passionate team of developers, designers, and visionaries committed to creating a space where authenticity thrives. Together, we strive to innovate and enhance your social media experience.</p>
+                </div>
+            </div>
+        </div>
+    </section>
     
     <!-- Main Content -->
-    <main class="main-content">
-        <!-- CTA Section -->
-        <section class="cta-section">
-            <h2 class="cta-title">Authenticity Starts Here</h2>
-            <p class="cta-description">
-                In today's social media landscape, rampant posturing and inauthenticity have become the norm. While some apps, like BeReal, have
-                attempted to combat these trends, they've fallen short.             </p>
-        </section>
-        
-        <!-- Download Buttons -->
-        <div class="buttons">
-            <a href="https://apps.apple.com/app/idYOUR_APP_ID" target="_blank" aria-label="Download on the App Store">
-                <img src="assets/app-store.svg" alt="Download on the App Store"  loading="lazy">
-            </a>
-            <a href="https://play.google.com/store/apps/details?id=YOUR_PACKAGE_NAME" target="_blank" aria-label="Get it on Google Play">
-                <img src="assets/play-store.svg" alt="Get it on Google Play" loading="lazy">
-            </a>
-        </div>
-    </main>
+
     
     <!-- Footer -->
     <footer class="footer">
@@ -60,7 +122,7 @@
         </div>
         <div class="social-icons">
             <a href="https://instagram.com/xiliapp" target="_blank" aria-label="Xili on Instagram">
-                <img src="assets/instagram.svg" alt="Facebook" class="social-icon">
+                <img src="assets/instagram.svg" alt="Instagram" class="social-icon">
             </a>
             <a href="https://twitter.com/xili" target="_blank" aria-label="Xili on Twitter">
                 <img src="assets/twitter.svg" alt="Twitter" class="social-icon">
@@ -70,5 +132,36 @@
     
     <!-- Link to JS -->
     <script src="js/scripts.js" defer></script>
+    
+    <!-- AOS Library JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js" defer></script>
+    
+    <!-- Initialize AOS and Ripple Effect -->
+    <script>
+      document.addEventListener('DOMContentLoaded', function() {
+        AOS.init({
+          duration: 1000, // Animation duration in milliseconds
+          once: true,     // Whether animation should happen only once
+        });
+
+        // Ripple Effect Script
+        document.querySelectorAll('.buttons a').forEach(button => {
+            button.addEventListener('click', function (e) {
+                const ripple = document.createElement('span');
+                const diameter = Math.max(button.clientWidth, button.clientHeight);
+                const radius = diameter / 2;
+                ripple.style.width = ripple.style.height = `${diameter}px`;
+                ripple.style.left = `${e.clientX - button.offsetLeft - radius}px`;
+                ripple.style.top = `${e.clientY - button.offsetTop - radius}px`;
+                ripple.classList.add('ripple');
+                const rippleElement = button.getElementsByClassName('ripple')[0];
+                if (rippleElement) {
+                    rippleElement.remove();
+                }
+                button.appendChild(ripple);
+            });
+        });
+      });
+    </script>
 </body>
 </html>
