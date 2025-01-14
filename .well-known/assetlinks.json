@@ -1,0 +1,11 @@
+[
+    {
+      "relation": ["delegate_permission/common.handle_all_urls"],
+      "target": {
+        "namespace": "android_app",
+        "package_name": "com.xili.xili",
+        "sha256_cert_fingerprints": ["5e8f16062ea3cd2c4a0d547876baa6f38cabf625"]
+      }
+    }
+  ]
+  
