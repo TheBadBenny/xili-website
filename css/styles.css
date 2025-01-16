@@ -119,17 +119,12 @@ body {
     color: #ffffff;
     text-align: center;
     padding: 20px;
-    background-image: url('assets/hero-background-mobile.jpg');
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
 }
 
-@media (min-width: 601px) {
-    .hero-section {
-        background-image: url('assets/hero-background.png');
-    }
-}
+
 
 .hero-content {
     background: rgba(0, 0, 0, 0.5);
