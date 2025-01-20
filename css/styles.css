@@ -333,6 +333,7 @@ body {
 /* About Us Section */
 .about-section {
     padding: var(--section-padding);
+    height: 100vh;
 }
 
 .about-content {
@@ -529,12 +530,6 @@ body {
 /* Smooth Scrolling */
 html {
     scroll-behavior: smooth;
-}
-
-/* Focus Styles for Better Keyboard Navigation */
-a:focus, button:focus, input:focus {
-    outline: 2px dashed #0000FF;
-    outline-offset: 4px;
 }
 
 /* Accessibility: Reduce Motion */
