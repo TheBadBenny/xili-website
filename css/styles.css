@@ -600,3 +600,26 @@ html {
         scroll-margin-top: 70px;
     }
 }
+
+
+@media (max-height: 800px) {
+    *{
+        font-size: 0.8rem;
+    }
+
+    .hero-card .cta-title {
+        font-size: 2em; /* Reduce el tamaño de la fuente del título */
+    }
+
+    .hero-card .cta-description {
+        font-size: 1em; /* Reduce el tamaño de la fuente de la descripción */
+    }
+
+    .hero-card .xili-app-icon {
+        width: 100px; /* Reduce el tamaño del ícono de la app */
+    }
+
+    .buttons a img {
+        height: 40px; /* Reduce el tamaño de las imágenes de descarga */
+    }
+}
