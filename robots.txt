@@ -1,0 +1,8 @@
+User-agent: *
+Disallow:
+
+# Específicamente permitir el acceso al favicon
+Allow: /assets/xiliLogo.ico
+
+# Indicar la ubicación del sitemap
+Sitemap: https://www.xiliapp.com
