@@ -14,6 +14,13 @@
     --about-image-size: 100%;
 }
 
+@font-face {
+    font-family: 'SpiritsSharp';
+    src: url('../fonts/SpiritsSharp-Regular.otf') format('opentype');
+    font-weight: normal;
+    font-style: normal;
+}
+
 * {
     box-sizing: border-box;
     margin: 0;
@@ -22,15 +29,24 @@
 
 body {
     font-family: 'Roboto', Arial, sans-serif;
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Ctext x='10' y='40' font-family='RobotoLight' font-size='30' fill='%23f0f0f0'%3Exili%3C/text%3E%3C/svg%3E");
-    background-repeat: repeat;
-    background-size: 200px 200px;
-    background-color: #ffffff; /* Added a base background color */
     color: #000000;
-    min-height: 100vh;
     display: flex;
     flex-direction: column;
     overflow-x: hidden;
+}
+
+/* Main Content Styles */
+.main-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: rgba(255, 255, 255, 1); /* Fondo semi-transparente blanco */
+    border-radius: 30px; /* Bordes redondeados */
+    padding: 40px 30px; /* Espaciado interno */
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4); /* Sombra para profundidad */
+    max-width: 45vw; /* Ancho máximo de la tarjeta */
+    width: 100%; /* Ancho completo en dispositivos pequeños */
 }
 
 .navbar {
@@ -47,18 +63,103 @@ body {
     z-index: 1000;
 }
 
+
+/* About Us Section */
+.about-section {
+    padding: var(--section-padding);
+    height: 100vh;
+}
+
+.about-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.about-grid {
+    display: flex;
+    gap: 40px;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.about-item {
+    flex: 1 1 500px;
+    max-width: 600px;
+}
+
+.about-image {
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+}
+
+.about-section h3 {
+    font-size: 1.8em;
+    margin-bottom: 15px;
+    color: var(--primary-color);
+}
+
+.about-section p {
+    font-size: 1em;
+    color: var(--cta-description-color);
+    margin-bottom: 20px;
+}
+
+
+
 .logo {
-    font-family: 'Roboto', Arial, sans-serif;
-    font-size: 2.5em;
+    font-family: 'SpiritsSharp-Regular', var(--font-family), Arial, sans-serif;
+    font-size: 4em;
     color: var(--primary-color);
     position: relative;
     cursor: pointer;
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Ctext x='10' y='40' font-family='RobotoLight' font-size='30' fill='%23f0f0f0'%3Exili%3C/text%3E%3C/svg%3E");
+}
+
+.logo-main-content{
+    font-family: 'roboto';
+    font-size: 2em;
+    color: var(--primary-color);
 }
 
 .nav-links {
     list-style: none;
     display: flex;
     gap: 20px;
+}
+
+.buttons {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    align-items: center;
+    transition: 
+        border-color 0.3s ease,
+        background-color 0.3s ease,
+        box-shadow 0.3s ease;
+}
+
+.buttons a {
+    position: relative;
+    overflow: hidden;
+    display: inline-block;
+    padding-top: 10px;
+}
+
+.buttons a img {
+    height: 50px;
+    width: auto;
+    padding: 0px;
+    display: fle; 
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.buttons a:hover img,
+.buttons a:focus img {
+    transform: scale(1.05);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
 }
 
 .nav-links a {
@@ -112,6 +213,7 @@ body {
     position: relative;
     height: 100vh;
     display: flex;
+    background-image: url('../assets/xiliBackground.svg'); /* Añade esta línea */
     justify-content: center;
     align-items: center;
     color: #ffffff;
@@ -130,11 +232,10 @@ body {
 /* Features Section Styles */
 .features-section {
     min-height: 100vh;
-    background-image: url('../assets/hero-background.webp');
+    background-image: url('../assets/goofyXilis.svg');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
-    background-color: rgba(249, 2, 249, 0.9);
     padding: var(--section-padding);
     position: relative;
     display: flex;
@@ -143,13 +244,12 @@ body {
 }
 
 .features-section::before {
-    content: "";
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.513);
+    background-color: rgba(0, 0, 0, 0.1);
     z-index: 1;
 }
 
@@ -157,16 +257,20 @@ body {
     position: relative;
     z-index: 2;
     width: 100%;
-    max-width: 1200px;
     text-align: center;
+    background-color: rgba(255, 255, 255, 0.85);
+    border-radius: 30px; /* Bordes redondeados */
+    padding: 40px 30px; /* Espaciado interno */
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4); /* Sombra para profundidad */
+    max-width: 45vw; /* Ancho máximo de la tarjeta */
+    width: 100%; /* Ancho completo en dispositivos pequeños */
 }
 
 .section-title {
     font-family: 'Roboto', sans-serif;
     font-size: 2.5em;
     margin-bottom: 40px;
-    color: #ffffff;
-    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+    text-shadow: 1px 1px 3px rgba(10, 10, 10, 0.5);
 }
 
 .features-grid {
@@ -212,6 +316,7 @@ body {
         font-size: 2em;
     }
 
+
     .feature-icon {
         width: 60px;
         height: 60px;
@@ -230,7 +335,7 @@ body {
     }
 }
 
-@media (max-width: 900px) {
+@media (max-width: 800px) {
     .navbar {
         padding: 15px 30px;
     }
@@ -252,6 +357,32 @@ body {
         flex-direction: column;
         align-items: center;
     }
+    .features-content {
+        position: relative;
+        z-index: 2;
+        width: 100%;
+        text-align: center;
+        border-radius: 30px; /* Bordes redondeados */
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4); /* Sombra para profundidad */
+        max-width: 80vw; /* Ancho máximo de la tarjeta */
+        width: 100%; /* Ancho completo en dispositivos pequeños */
+    }
+
+    .main-content {
+        flex: 1;
+        display: flex;
+        margin-top: 65px;
+        flex-direction: column;
+        background-color: rgba(255, 255, 255, 1); /* Fondo semi-transparente blanco */
+        border-radius: 30px; /* Bordes redondeados */
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4); /* Sombra para profundidad */
+        max-width: 80vw; /* Ancho máximo de la tarjeta */
+    }
+    .buttons{
+        gap: 0px
+    }
+    
+
 }
 
 @media (max-width: 600px) {
@@ -272,7 +403,6 @@ body {
     }
 
     .buttons {
-        gap: 15px;
         flex-direction: column;
     }
 
@@ -316,11 +446,11 @@ body {
         gap: 20px;
     }
 
-    .feature-item,
     .about-item {
-        max-width: 100%;
-        padding: 20px;
+        flex: 1 1 300px;
+        max-width: 600px;
     }
+    
 
     #hero,
     #features,
@@ -330,63 +460,10 @@ body {
     }
 }
 
-/* About Us Section */
-.about-section {
-    padding: var(--section-padding);
-    height: 100vh;
-}
-
-.about-content {
-    max-width: 1200px;
-    margin: 0 auto;
-    text-align: center;
-}
-
-.about-grid {
-    display: flex;
-    gap: 40px;
-    justify-content: center;
-    align-items: center;
-    flex-wrap: wrap;
-}
-
-.about-item {
-    flex: 1 1 500px;
-    max-width: 600px;
-}
-
-.about-image {
-    width: 100%;
-    height: auto;
-    border-radius: 10px;
-}
-
-.about-section h3 {
-    font-size: 1.8em;
-    margin-bottom: 15px;
-    color: var(--primary-color);
-}
-
-.about-section p {
-    font-size: 1em;
-    color: var(--cta-description-color);
-    margin-bottom: 20px;
-}
-
-/* Main Content Styles */
-.main-content {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    padding: 100px 20px 20px 20px;
-}
-
 /* CTA Section Styles */
 .cta-section {
     text-align: center;
-    margin-bottom: 40px;
+    margin-bottom: 0px;
 }
 
 .cta-title {
@@ -403,39 +480,6 @@ body {
     color: var(--cta-description-color);
     max-width: 600px;
     margin: 0 auto;
-}
-
-/* Download Buttons Styles */
-.buttons {
-    display: flex;
-    gap: 50px;
-    justify-content: center;
-    align-items: center;
-    transition: 
-        border-color 0.3s ease,
-        background-color 0.3s ease,
-        box-shadow 0.3s ease;
-}
-
-.buttons a {
-    position: relative;
-    overflow: hidden;
-    display: inline-block;
-    padding: 10px;
-    border-radius: 8px;
-}
-
-.buttons a img {
-    height: 50px;
-    width: auto;
-    display: block; 
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.buttons a:hover img,
-.buttons a:focus img {
-    transform: scale(1.05);
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
 }
 
 /* Ripple Effect Styles */
@@ -540,12 +584,12 @@ html {
     }
 }
 
-/* Scroll Margin */
-#hero,
-#features,
-#about,
-#download {
-    scroll-margin-top: 85px;
+#about{
+    scroll-margin: 100px;
+}
+
+#download{
+    scroll-margin:500px
 }
 
 @media (max-width: 600px) {

@@ -20,7 +20,7 @@
     <meta name="author" content="Your Name">
 
     <!-- Favicon-->
-    <link rel="icon" type="image/x-icon" href="/assets/adaptive-icon.ico">
+    <link rel="icon" type="image/x-icon" href="/assets/xiliLogo.ico">
 
     <!-- Open Graph Meta Tags -->
     <meta property="og:title" content="Xili - Your Ultimate Mobile Application">
@@ -34,10 +34,10 @@
 <!-- Navbar -->
 <nav class="navbar" role="navigation" aria-label="Main Navigation">
     <h1 class="logo">Xili</h1>
-    <button class="hamburger" aria-label="Toggle Navigation" aria-expanded="false">
+    <button class="hamburger" aria-label="Toggle Navigation" aria-expanded="false" aria-controls="nav-menu">
         <span class="hamburger-icon"></span>
     </button>
-    <ul class="nav-links">
+    <ul class="nav-links" id="nav-menu">
         <li><a href="#">Home</a></li>
         <li><a href="#features">Features</a></li>
         <li><a href="#about">About Us</a></li>
@@ -56,6 +56,13 @@
                     attempted to combat these trends, they've fallen short.
                 </p>
             </section>
+
+            <div class="app-icon-container" data-aos="fade-up" data-aos-delay="200">
+                <img src="assets/xiliLogo.svg" alt="Xili App Icon" class="xili-app-icon">
+            </div>
+            <div data-aos="fade-up" data-aos-delay="300">
+                <h1 class="logo-main-content">Xili</h1>
+            </div>
             
             <!-- Download Buttons -->
             <div class="buttons" data-aos="zoom-in">
