@@ -1,16 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <!-- Basic Meta Tags -->
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Xili - Your Ultimate Mobile Application</title>
 
-    <!-- Link to CSS -->
     <link rel="stylesheet" href="css/minified.css" />
 
-    <!-- Google Fonts (Roboto) -->
     <link
       rel="preload"
       href="https://fonts.gstatic.com/s/roboto/v30/KFOmCnqEu92Fr1Mu4mxP.ttf"
@@ -28,7 +25,6 @@
       media="print"
       onload="this.media='all'; this.onload=null;"
     />
-    <!-- SEO Meta Tags -->
     <meta
       name="description"
       content="Xili - Your ultimate mobile application. Download it now on App Store and Google Play."
@@ -39,10 +35,8 @@
     />
     <meta name="author" content="Your Name" />
 
-    <!-- Favicon-->
     <link rel="icon" type="image/x-icon" href="/assets/xiliLogo.ico" />
 
-    <!-- Open Graph Meta Tags -->
     <meta
       property="og:title"
       content="Xili - Your Ultimate Mobile Application"
@@ -62,7 +56,6 @@
     <meta property="og:type" content="website" />
   </head>
   <body>
-    <!-- Navbar -->
     <nav class="navbar" role="navigation" aria-label="Main Navigation">
       <img
         style="width: 60px"
@@ -86,10 +79,8 @@
       </ul>
     </nav>
 
-    <!-- Hero Section -->
     <section class="hero-section" id="hero">
       <main class="main-content" id="download">
-        <!-- CTA Section -->
         <section class="cta-section" data-aos="fade-up">
           <h2 class="cta-title" data-aos="fade-right">
             Authenticity Starts Here
@@ -117,7 +108,6 @@
           />
         </div>
 
-        <!-- Download Buttons -->
         <div class="buttons" data-aos="zoom-in">
           <a
             href="https://apps.apple.com/app/idYOUR_APP_ID"
@@ -145,7 +135,6 @@
       </main>
     </section>
 
-    <!-- Features Section -->
     <section class="features-section" id="features">
       <div class="features-content" data-aos="fade-up">
         <h2 class="section-title">Features</h2>
@@ -186,7 +175,6 @@
       </div>
     </section>
 
-    <!-- About Us Section -->
     <section class="about-section" id="about">
       <div class="about-content" data-aos="fade-up">
         <h2 class="section-title">About Us</h2>
@@ -214,9 +202,6 @@
       </div>
     </section>
 
-    <!-- Main Content -->
-
-    <!-- Footer -->
     <footer class="footer">
       <p>&copy; 2025 Xili. All rights reserved.</p>
       <div class="footer-links">
@@ -232,7 +217,7 @@
           <img src="assets/instagram.svg" alt="Instagram" class="social-icon" />
         </a>
         <a
-          href="https://twitter.com/xili"
+          href="https://twitter.com/xiliapp"
           target="_blank"
           aria-label="Xili on Twitter"
         >
@@ -241,24 +226,20 @@
       </div>
     </footer>
 
-    <!-- Link to JS -->
     <script src="js/scripts.js" defer></script>
 
-    <!-- AOS Library JS -->
     <script
       src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"
       defer
     ></script>
 
-    <!-- Initialize AOS and Ripple Effect -->
     <script>
       document.addEventListener("DOMContentLoaded", function () {
         AOS.init({
-          duration: 1000, // Animation duration in milliseconds
-          once: true, // Whether animation should happen only once
+          duration: 1000,
+          once: true,
         });
 
-        // Ripple Effect Script
         document.querySelectorAll(".buttons a").forEach((button) => {
           button.addEventListener("click", function (e) {
             const ripple = document.createElement("span");
