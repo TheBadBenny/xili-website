@@ -4,7 +4,8 @@
       "target": {
         "namespace": "android_app",
         "package_name": "com.xili.xili",
-        "sha256_cert_fingerprints": ["5e8f16062ea3cd2c4a0d547876baa6f38cabf625"]
+        "sha256_cert_fingerprints": 
+          ["7D:90:1C:1E:B5:D5:98:EA:B5:B4:37:B5:73:CB:A2:42:AD:ED:E3:D5:71:00:4A:4E:12:4A:31:CF:90:51:F4:E0"]
       }
     }
   ]
