@@ -68,6 +68,8 @@
         background: url("assets/xiliBackground.svg") repeat center;
         background-color: #f25b50;
         background-size: auto 100%;
+        width: 100%;
+        box-sizing: border-box;
       }
 
       .content-section {
@@ -81,9 +83,8 @@
         margin-bottom: 30px;
         background: #ebebeb;
         -webkit-text-fill-color: transparent;
-        -webkit-text-stroke: ;
+        -webkit-background-clip: text;
         background-clip: text;
-        text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
         white-space: nowrap;
       }
 
@@ -108,12 +109,12 @@
         padding: 25px;
         border-radius: 16px;
         border: 1px solid rgba(255, 128, 128, 0.3);
-        transition: all 0.6s ease; /* Increased transition duration for smoother effect */
+        transition: all 0.6s ease;
         display: flex;
         align-items: center;
         gap: 15px;
-        opacity: 0; /* Start hidden */
-        transform: translateY(50px); /* Start below normal position */
+        opacity: 0;
+        transform: translateY(50px);
       }
 
       .feature-card.visible {
@@ -176,9 +177,9 @@
         position: relative;
         max-width: 20vw;
         width: 100%;
-        opacity: 0; /* Start hidden */
-        transform: translateY(50px); /* Start below normal position */
-        transition: all 0.6s ease; /* Increased transition duration for smoother effect */
+        opacity: 0;
+        transform: translateY(50px);
+        transition: all 0.6s ease;
       }
 
       .device-mockup.visible {
@@ -189,7 +190,7 @@
       .device-frame {
         width: 100%;
         border-radius: 50px;
-        box-shadow: 0 0 15px #ebebeb, 0 0 30px;
+        box-shadow: 0 0 15px #ebebeb, 0 0 30px rgba(235, 235, 235, 0.6);
       }
 
       @media (max-width: 1024px) {
@@ -198,7 +199,12 @@
           gap: 60px;
           text-align: center;
           padding: 160px 30px 40px;
-          background-size: auto 80%; /* Adjusts height for smaller screens */
+          background-size: auto 80%;
+          width: 100%;
+        }
+
+        .content-section {
+          padding: 0 20px;
         }
 
         .hero-title {
@@ -222,7 +228,20 @@
         .main-container {
           padding: 140px 20px 40px;
           gap: 40px;
-          background-size: auto 60%; /* Further adjusts height for mobile */
+          background-size: auto 60%;
+          width: 100%;
+          background-position: center;
+          justify-content: center;
+          align-items: center;
+        }
+
+        .content-section {
+          width: 100%;
+          max-width: 100%;
+          padding: 0 15px;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
         }
 
         .hero-title {
@@ -237,14 +256,24 @@
           padding: 20px;
           flex-direction: column;
           text-align: center;
+          width: 100%;
+          max-width: 400px;
         }
 
         .download-buttons {
+          justify-content: center;
+          width: 100%;
+        }
+
+        .device-section {
+          width: 100%;
+          display: flex;
           justify-content: center;
         }
 
         .device-mockup {
           max-width: 280px;
+          width: 90%;
         }
 
         .navbar {
