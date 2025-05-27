@@ -49,7 +49,7 @@
 
       .navbar .nav-link {
         font-size: 0.9rem;
-        color: #333;
+        color: #141414;
         text-decoration: none;
         transition: color 0.3s ease;
       }
@@ -60,13 +60,13 @@
 
       .main-container {
         display: flex;
-        align-items: center;
+        text-align: left;
+        align-items: start;
         min-height: calc(100vh - 140px);
         padding: 180px 150px 150px;
         margin: 0 auto;
         gap: 80px;
-        background: url("assets/xiliBackground.svg") repeat center;
-        background-color: #f25b50;
+        background-color: #ebebeb;
         background-size: auto 100%;
         width: 100%;
         box-sizing: border-box;
@@ -77,20 +77,19 @@
       }
 
       .hero-title {
-        font-size: 3.5rem;
+        font-size: 6rem;
         font-weight: 700;
         line-height: 1;
         margin-bottom: 30px;
-        background: #ebebeb;
+        background: #141414;
         -webkit-text-fill-color: transparent;
         -webkit-background-clip: text;
         background-clip: text;
-        white-space: nowrap;
       }
 
       .hero-subtitle {
         font-size: 1.25rem;
-        color: #ebebeb;
+        color: #141414;
         margin-bottom: 40px;
         line-height: 1.6;
         font-weight: 500;
@@ -129,7 +128,7 @@
 
       .feature-card .icon {
         font-size: 1.5rem;
-        color: #667eea;
+        color: #f25b50;
       }
 
       .feature-card h3 {
@@ -148,7 +147,7 @@
       .download-buttons {
         display: flex;
         justify-content: center;
-        gap: 20px;
+        gap: 60px;
         flex-wrap: wrap;
       }
 
@@ -162,8 +161,8 @@
       }
 
       .download-btn img {
-        height: 60px;
-        width: 180px;
+        height: 85px;
+        width: 260px;
       }
 
       .device-section {
@@ -173,24 +172,109 @@
         align-items: center;
       }
 
-      .device-mockup {
+      .device-slider {
         position: relative;
         max-width: 20vw;
         width: 100%;
         opacity: 0;
         transform: translateY(50px);
         transition: all 0.6s ease;
+        z-index: 50;
       }
 
-      .device-mockup.visible {
+      .device-slider.visible {
         opacity: 1;
         transform: translateY(0);
       }
 
-      .device-frame {
-        width: 100%;
+      .slider-container {
+        position: relative;
+        overflow: hidden;
         border-radius: 50px;
         box-shadow: 0 0 15px #ebebeb, 0 0 30px rgba(235, 235, 235, 0.6);
+      }
+
+      .slider-track {
+        display: flex;
+        transition: transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      }
+
+      .slide {
+        min-width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .device-frame {
+        width: 100%;
+        height: auto;
+        border-radius: 50px;
+        display: block;
+      }
+
+      .slider-nav {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        background: rgba(255, 255, 255, 0.9);
+        border: none;
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 18px;
+        color: #333;
+        transition: all 0.3s ease;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        z-index: 100;
+      }
+
+      .slider-nav:hover {
+        background: rgba(255, 255, 255, 1);
+        transform: translateY(-50%) scale(1.1);
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+      }
+
+      .slider-nav:active {
+        transform: translateY(-50%) scale(0.95);
+      }
+
+      .slider-nav.prev {
+        left: -50px;
+      }
+
+      .slider-nav.next {
+        right: -50px;
+      }
+
+      .slider-dots {
+        display: flex;
+        justify-content: center;
+        gap: 8px;
+        margin-top: 20px;
+      }
+
+      .dot {
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        background: rgba(0, 0, 0, 0.3);
+        cursor: pointer;
+        transition: all 0.3s ease;
+      }
+
+      .dot.active {
+        background: #f25b50;
+        transform: scale(1.2);
+      }
+
+      .dot:hover {
+        background: rgba(242, 91, 80, 0.7);
+        transform: scale(1.1);
       }
 
       @media (max-width: 1024px) {
@@ -221,6 +305,10 @@
 
         .nav-link {
           font-size: 0.8rem;
+        }
+
+        .device-slider {
+          max-width: 50vw;
         }
       }
 
@@ -271,7 +359,7 @@
           justify-content: center;
         }
 
-        .device-mockup {
+        .device-slider {
           max-width: 280px;
           width: 90%;
         }
@@ -287,10 +375,24 @@
         .nav-link {
           font-size: 0.75rem;
         }
+
+        .slider-nav {
+          width: 35px;
+          height: 35px;
+          font-size: 16px;
+        }
+
+        .slider-nav.prev {
+          left: -17px;
+        }
+
+        .slider-nav.next {
+          right: -17px;
+        }
       }
 
       .footer {
-        background: rgba(255, 255, 255, 0.95);
+        background: #ebebeb;
         backdrop-filter: blur(12px);
         border-top: 1px solid rgba(0, 0, 0, 0.05);
         padding: 40px 40px 30px;
@@ -303,7 +405,7 @@
       }
 
       .footer p {
-        color: #555;
+        color: #141414;
         margin-bottom: 15px;
         font-size: 0.9rem;
         font-weight: 500;
@@ -317,7 +419,7 @@
       }
 
       .footer-links a {
-        color: #555;
+        color: #141414;
         text-decoration: none;
         font-size: 0.9rem;
         font-weight: 500;
@@ -374,41 +476,6 @@
           have attempted to combat these trends, they've fallen short.
         </p>
 
-        <div class="feature-cards">
-          <div class="feature-card">
-            <span class="icon">📸</span>
-            <div>
-              <h3>Post Semi-Random Content</h3>
-              <p>
-                Create and share authentic moments with content that reflects
-                your true self.
-              </p>
-            </div>
-          </div>
-
-          <div class="feature-card">
-            <span class="icon">🔄</span>
-            <div>
-              <h3>Daily Rerolls</h3>
-              <p>
-                Get rerolls each day to refresh your posting opportunities and
-                keep the content flowing.
-              </p>
-            </div>
-          </div>
-
-          <div class="feature-card">
-            <span class="icon">⭐</span>
-            <div>
-              <h3>Rate Other Posts</h3>
-              <p>
-                Engage with the community by rating and providing feedback on
-                others' posts.
-              </p>
-            </div>
-          </div>
-        </div>
-
         <div class="download-buttons">
           <a
             href="https://apps.apple.com/app/idYOUR_APP_ID"
@@ -434,12 +501,57 @@
       </div>
 
       <div class="device-section">
-        <div class="device-mockup">
-          <img
-            src="assets/xiliMockup.png"
-            alt="Xili App Interface"
-            class="device-frame"
-          />
+        <div class="device-slider">
+          <div class="slider-container">
+            <div class="slider-track" id="sliderTrack">
+              <div class="slide">
+                <img
+                  src="assets/xiliMockup.png"
+                  alt="Xili App Interface - Screen 1"
+                  class="device-frame"
+                />
+              </div>
+              <div class="slide">
+                <img
+                  src="assets/xiliMockup.png"
+                  alt="Xili App Interface - Screen 2"
+                  class="device-frame"
+                />
+              </div>
+              <div class="slide">
+                <img
+                  src="assets/xiliMockup.png"
+                  alt="Xili App Interface - Screen 3"
+                  class="device-frame"
+                />
+              </div>
+              <div class="slide">
+                <img
+                  src="assets/xiliMockup.png"
+                  alt="Xili App Interface - Screen 4"
+                  class="device-frame"
+                />
+              </div>
+            </div>
+          </div>
+
+          <button
+            class="slider-nav prev"
+            id="prevBtn"
+            aria-label="Previous image"
+          >
+            &#8249;
+          </button>
+          <button class="slider-nav next" id="nextBtn" aria-label="Next image">
+            &#8250;
+          </button>
+
+          <div class="slider-dots" id="sliderDots">
+            <span class="dot active" data-slide="0"></span>
+            <span class="dot" data-slide="1"></span>
+            <span class="dot" data-slide="2"></span>
+            <span class="dot" data-slide="3"></span>
+          </div>
         </div>
       </div>
     </div>
@@ -491,12 +603,110 @@
       }, observerOptions);
 
       document
-        .querySelectorAll(".feature-card, .device-mockup")
+        .querySelectorAll(".feature-card, .device-slider")
         .forEach((el) => {
           el.style.transition = "all 0.6s ease";
           observer.observe(el);
         });
+
+      class ImageSlider {
+        constructor() {
+          this.currentSlide = 0;
+          this.totalSlides = 4;
+          this.sliderTrack = document.getElementById("sliderTrack");
+          this.prevBtn = document.getElementById("prevBtn");
+          this.nextBtn = document.getElementById("nextBtn");
+          this.dots = document.querySelectorAll(".dot");
+          this.autoSlideInterval = null;
+
+          this.init();
+        }
+
+        init() {
+          this.prevBtn.addEventListener("click", () => this.prevSlide());
+          this.nextBtn.addEventListener("click", () => this.nextSlide());
+
+          this.dots.forEach((dot, index) => {
+            dot.addEventListener("click", () => this.goToSlide(index));
+          });
+
+          this.addTouchSupport();
+
+          this.startAutoSlide();
+
+          const slider = document.querySelector(".device-slider");
+          slider.addEventListener("mouseenter", () => this.stopAutoSlide());
+          slider.addEventListener("mouseleave", () => this.startAutoSlide());
+        }
+
+        updateSlider() {
+          const translateX = -this.currentSlide * 100;
+          this.sliderTrack.style.transform = `translateX(${translateX}%)`;
+
+          this.dots.forEach((dot, index) => {
+            dot.classList.toggle("active", index === this.currentSlide);
+          });
+        }
+
+        nextSlide() {
+          this.currentSlide = (this.currentSlide + 1) % this.totalSlides;
+          this.updateSlider();
+        }
+
+        prevSlide() {
+          this.currentSlide =
+            (this.currentSlide - 1 + this.totalSlides) % this.totalSlides;
+          this.updateSlider();
+        }
+
+        goToSlide(index) {
+          this.currentSlide = index;
+          this.updateSlider();
+        }
+
+        addTouchSupport() {
+          let startX = 0;
+          let endX = 0;
+          const slider = document.querySelector(".slider-container");
+
+          slider.addEventListener("touchstart", (e) => {
+            startX = e.touches[0].clientX;
+          });
+
+          slider.addEventListener("touchend", (e) => {
+            endX = e.changedTouches[0].clientX;
+            const difference = startX - endX;
+
+            if (Math.abs(difference) > 50) {
+              if (difference > 0) {
+                this.nextSlide();
+              } else {
+                this.prevSlide();
+              }
+            }
+          });
+        }
+
+        startAutoSlide() {
+          this.stopAutoSlide();
+          this.autoSlideInterval = setInterval(() => {
+            this.nextSlide();
+          }, 4000);
+        }
+
+        stopAutoSlide() {
+          if (this.autoSlideInterval) {
+            clearInterval(this.autoSlideInterval);
+            this.autoSlideInterval = null;
+          }
+        }
+      }
+
+      document.addEventListener("DOMContentLoaded", () => {
+        new ImageSlider();
+      });
     </script>
+
     <footer class="footer">
       <div class="footer-content">
         <p>© 2025 Xili. All rights reserved.</p>
