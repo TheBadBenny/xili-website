@@ -77,6 +77,8 @@
 
     <!-- Canonical URL -->
     <link rel="canonical" href="https://xili.app/" />
+    <!-- AOS -->
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
 
     <!-- Alternate Language Pages (if you have them) -->
     <link rel="alternate" hreflang="en" href="https://xili.app/" />
@@ -147,6 +149,8 @@
         }
       }
     </script>
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+
     <style>
       * {
         margin: 0;
@@ -318,8 +322,6 @@
         max-width: 20vw;
         width: 100%;
         opacity: 0;
-        transform: translateY(50px);
-        transition: all 0.6s ease;
         z-index: 50;
       }
 
@@ -611,7 +613,7 @@
     </nav>
 
     <div class="main-container">
-      <div class="content-section">
+      <div class="content-section" data-aos="fade-right">
         <h1 class="hero-title">Authenticity Starts Here</h1>
         <p class="hero-subtitle">
           In today's social media landscape, rampant posturing and
@@ -644,7 +646,7 @@
       </div>
 
       <div class="device-section">
-        <div class="device-slider">
+        <div class="device-slider" data-aos="fade-left">
           <div class="slider-container">
             <div class="slider-track" id="sliderTrack">
               <div class="slide">
@@ -700,6 +702,14 @@
     </div>
 
     <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        new ImageSlider();
+
+        AOS.init({
+          duration: 800,
+          once: true,
+        });
+      });
       document.querySelectorAll(".download-btn").forEach((button) => {
         button.addEventListener("click", function (e) {
           e.preventDefault();

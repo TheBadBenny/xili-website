@@ -71,6 +71,8 @@
     <meta name="msapplication-TileColor" content="#f25b50" />
     <meta name="theme-color" content="#f25b50" />
 
+    <!-- AOS -->
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
     <link rel="canonical" href="https://xili.app/es/" />
 
     <link rel="alternate" hreflang="en" href="https://xili.app/" />
@@ -127,6 +129,8 @@
         }
       }
     </script>
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+
     <style>
       /* Your existing CSS styles remain the same */
       * {
@@ -299,8 +303,6 @@
         max-width: 20vw;
         width: 100%;
         opacity: 0;
-        transform: translateY(50px);
-        transition: all 0.6s ease;
         z-index: 50;
       }
 
@@ -592,7 +594,7 @@
     </nav>
 
     <div class="main-container">
-      <div class="content-section">
+      <div class="content-section" data-aos="fade-right">
         <h1 class="hero-title">La Autenticidad Comienza Aquí</h1>
         <p class="hero-subtitle">
           En el panorama actual de las redes sociales, la presunción rampante y
@@ -629,7 +631,7 @@
       </div>
 
       <div class="device-section">
-        <div class="device-slider">
+        <div class="device-slider" data-aos="fade-left">
           <div class="slider-container">
             <div class="slider-track" id="sliderTrack">
               <div class="slide">
@@ -689,6 +691,14 @@
     </div>
 
     <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        new ImageSlider();
+
+        AOS.init({
+          duration: 800,
+          once: true,
+        });
+      });
       document.querySelectorAll(".download-btn").forEach((button) => {
         button.addEventListener("click", function (e) {
           e.preventDefault();
