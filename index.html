@@ -2,6 +2,47 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
+    <script>
+      (function () {
+        // Skip redirect if already on a language-specific path
+        if (
+          window.location.pathname.startsWith("/es") ||
+          window.location.pathname.startsWith("/fr")
+        ) {
+          document.body.classList.add("language-checked");
+          return;
+        }
+
+        // Check for saved language preference
+        const savedLanguage = localStorage.getItem("preferredLanguage");
+        if (savedLanguage && savedLanguage !== "en") {
+          window.location.replace(
+            `/${savedLanguage}${window.location.search}${window.location.hash}`
+          );
+          return;
+        }
+
+        // Get browser language
+        const userLanguage = navigator.language || navigator.languages[0];
+        const languageCode = userLanguage.split("-")[0].toLowerCase();
+
+        // Define language-to-path mapping
+        const languagePaths = {
+          es: "/es",
+          fr: "/fr",
+        };
+
+        // Redirect if language is supported and not English
+        if (languagePaths[languageCode] && languageCode !== "en") {
+          window.location.replace(
+            `${languagePaths[languageCode]}${window.location.search}${window.location.hash}`
+          );
+        } else {
+          // No redirect needed; show the page
+          document.body.classList.add("language-checked");
+        }
+      })();
+    </script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
     <!-- Primary SEO Meta Tags -->
@@ -859,28 +900,6 @@
 
       document.addEventListener("DOMContentLoaded", () => {
         new ImageSlider();
-
-        if (
-          window.location.pathname.startsWith("/es") ||
-          window.location.pathname.startsWith("/fr")
-        ) {
-          return;
-        }
-
-        const userLanguage = navigator.language || navigator.languages[0];
-        const languageCode = userLanguage.split("-")[0].toLowerCase(); // Extract base language (e.g., "es" from "es-MX")
-
-        const languagePaths = {
-          es: "/es",
-          fr: "/fr",
-        };
-
-        if (languagePaths[languageCode] && languageCode !== "en") {
-          window.location.href =
-            languagePaths[languageCode] +
-            window.location.search +
-            window.location.hash;
-        }
       });
     </script>
 
