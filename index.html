@@ -859,6 +859,28 @@
 
       document.addEventListener("DOMContentLoaded", () => {
         new ImageSlider();
+
+        if (
+          window.location.pathname.startsWith("/es") ||
+          window.location.pathname.startsWith("/fr")
+        ) {
+          return;
+        }
+
+        const userLanguage = navigator.language || navigator.languages[0];
+        const languageCode = userLanguage.split("-")[0].toLowerCase(); // Extract base language (e.g., "es" from "es-MX")
+
+        const languagePaths = {
+          es: "/es",
+          fr: "/fr",
+        };
+
+        if (languagePaths[languageCode] && languageCode !== "en") {
+          window.location.href =
+            languagePaths[languageCode] +
+            window.location.search +
+            window.location.hash;
+        }
       });
     </script>
 
