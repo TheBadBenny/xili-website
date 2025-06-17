@@ -4,42 +4,39 @@
     <meta charset="UTF-8" />
     <script>
       (function () {
-        // Skip redirect if already on a language-specific path
+        const currentPath = window.location.pathname;
         if (
-          window.location.pathname.startsWith("/es") ||
-          window.location.pathname.startsWith("/fr")
+          currentPath === "/es/index.html" ||
+          currentPath === "/fr/index.html" ||
+          currentPath === "/jp/index.html" ||
+          currentPath === "/index.html" ||
+          currentPath === "/"
         ) {
-          document.body.classList.add("language-checked");
           return;
         }
-
-        // Check for saved language preference
         const savedLanguage = localStorage.getItem("preferredLanguage");
-        if (savedLanguage && savedLanguage !== "en") {
+        const languagePaths = {
+          en: "/index.html",
+          es: "/es/index.html",
+          fr: "/fr/index.html",
+          jp: "/jp/index.html",
+        };
+        if (savedLanguage && languagePaths[savedLanguage]) {
           window.location.replace(
-            `/${savedLanguage}${window.location.search}${window.location.hash}`
+            `${languagePaths[savedLanguage]}${window.location.search}${window.location.hash}`
           );
           return;
         }
-
-        // Get browser language
         const userLanguage = navigator.language || navigator.languages[0];
         const languageCode = userLanguage.split("-")[0].toLowerCase();
-
-        // Define language-to-path mapping
-        const languagePaths = {
-          es: "/es",
-          fr: "/fr",
-        };
-
-        // Redirect if language is supported and not English
         if (languagePaths[languageCode] && languageCode !== "en") {
           window.location.replace(
             `${languagePaths[languageCode]}${window.location.search}${window.location.hash}`
           );
         } else {
-          // No redirect needed; show the page
-          document.body.classList.add("language-checked");
+          window.location.replace(
+            `/index.html${window.location.search}${window.location.hash}`
+          );
         }
       })();
     </script>
@@ -133,18 +130,7 @@
       rel="stylesheet"
     />
     <link rel="icon" type="image/x-icon" href="assets/xiliLogo.ico" />
-    <link
-      rel="icon"
-      type="image/png"
-      sizes="32x32"
-      href="assets/favicon-32x32.png"
-    />
-    <link
-      rel="icon"
-      type="image/png"
-      sizes="16x16"
-      href="assets/favicon-16x16.png"
-    />
+
     <link
       rel="apple-touch-icon"
       sizes="180x180"
@@ -641,6 +627,55 @@
           opacity: 0;
         }
       }
+
+      .language-selector {
+        display: inline-block;
+        margin-top: 20px;
+      }
+
+      .language-selector select {
+        background: rgba(255, 255, 255, 0.9);
+        border: 1px solid rgba(0, 0, 0, 0.1);
+        border-radius: 8px;
+        padding: 8px 12px;
+        font-family: "Inter", sans-serif;
+        font-size: 0.9rem;
+        color: #333;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        outline: none;
+        appearance: none;
+        background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23333' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+        background-repeat: no-repeat;
+        background-position: right 10px center;
+        background-size: 16px;
+        padding-right: 30px;
+      }
+
+      .language-selector select:hover {
+        border-color: #f25b50;
+        color: #f25b50;
+      }
+
+      .language-selector select:focus {
+        border-color: #f25b50;
+        box-shadow: 0 0 0 2px rgba(242, 91, 80, 0.2);
+      }
+
+      @media (max-width: 768px) {
+        .footer {
+          padding: 30px 20px 25px;
+        }
+
+        .footer-links {
+          gap: 20px;
+        }
+
+        .language-selector select {
+          font-size: 0.8rem;
+          padding: 6px 10px;
+        }
+      }
     </style>
   </head>
   <body>
@@ -743,166 +778,6 @@
         </div>
       </div>
     </div>
-
-    <script>
-      document.addEventListener("DOMContentLoaded", () => {
-        new ImageSlider();
-
-        AOS.init({
-          duration: 800,
-          once: true,
-        });
-      });
-      document.querySelectorAll(".download-btn").forEach((button) => {
-        button.addEventListener("click", function (e) {
-          e.preventDefault();
-
-          const ripple = document.createElement("span");
-          const rect = button.getBoundingClientRect();
-          const size = Math.max(rect.width, rect.height);
-          const x = e.clientX - rect.left - size / 2;
-          const y = e.clientY - rect.top - size / 2;
-
-          ripple.style.width = ripple.style.height = size + "px";
-          ripple.style.left = x + "px";
-          ripple.style.top = y + "px";
-          ripple.classList.add("ripple");
-
-          button.style.position = "relative";
-          button.style.overflow = "hidden";
-
-          const existingRipple = button.querySelector(".ripple");
-          if (existingRipple) {
-            existingRipple.remove();
-          }
-
-          button.appendChild(ripple);
-
-          setTimeout(() => {
-            window.open(button.href, "_blank");
-          }, 300);
-        });
-      });
-
-      const observerOptions = {
-        threshold: 0.1,
-        rootMargin: "0px 0px -50px 0px",
-      };
-
-      const observer = new IntersectionObserver((entries, observer) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add("visible");
-            observer.unobserve(entry.target);
-          }
-        });
-      }, observerOptions);
-
-      document
-        .querySelectorAll(".feature-card, .device-slider")
-        .forEach((el) => {
-          el.style.transition = "all 0.6s ease";
-          observer.observe(el);
-        });
-
-      class ImageSlider {
-        constructor() {
-          this.currentSlide = 0;
-          this.totalSlides = 4;
-          this.sliderTrack = document.getElementById("sliderTrack");
-          this.prevBtn = document.getElementById("prevBtn");
-          this.nextBtn = document.getElementById("nextBtn");
-          this.dots = document.querySelectorAll(".dot");
-          this.autoSlideInterval = null;
-
-          this.init();
-        }
-
-        init() {
-          this.prevBtn.addEventListener("click", () => this.prevSlide());
-          this.nextBtn.addEventListener("click", () => this.nextSlide());
-
-          this.dots.forEach((dot, index) => {
-            dot.addEventListener("click", () => this.goToSlide(index));
-          });
-
-          this.addTouchSupport();
-
-          this.startAutoSlide();
-
-          const slider = document.querySelector(".device-slider");
-          slider.addEventListener("mouseenter", () => this.stopAutoSlide());
-          slider.addEventListener("mouseleave", () => this.startAutoSlide());
-        }
-
-        updateSlider() {
-          const translateX = -this.currentSlide * 100;
-          this.sliderTrack.style.transform = `translateX(${translateX}%)`;
-
-          this.dots.forEach((dot, index) => {
-            dot.classList.toggle("active", index === this.currentSlide);
-          });
-        }
-
-        nextSlide() {
-          this.currentSlide = (this.currentSlide + 1) % this.totalSlides;
-          this.updateSlider();
-        }
-
-        prevSlide() {
-          this.currentSlide =
-            (this.currentSlide - 1 + this.totalSlides) % this.totalSlides;
-          this.updateSlider();
-        }
-
-        goToSlide(index) {
-          this.currentSlide = index;
-          this.updateSlider();
-        }
-
-        addTouchSupport() {
-          let startX = 0;
-          let endX = 0;
-          const slider = document.querySelector(".slider-container");
-
-          slider.addEventListener("touchstart", (e) => {
-            startX = e.touches[0].clientX;
-          });
-
-          slider.addEventListener("touchend", (e) => {
-            endX = e.changedTouches[0].clientX;
-            const difference = startX - endX;
-
-            if (Math.abs(difference) > 50) {
-              if (difference > 0) {
-                this.nextSlide();
-              } else {
-                this.prevSlide();
-              }
-            }
-          });
-        }
-
-        startAutoSlide() {
-          this.stopAutoSlide();
-          this.autoSlideInterval = setInterval(() => {
-            this.nextSlide();
-          }, 4000);
-        }
-
-        stopAutoSlide() {
-          if (this.autoSlideInterval) {
-            clearInterval(this.autoSlideInterval);
-            this.autoSlideInterval = null;
-          }
-        }
-      }
-
-      document.addEventListener("DOMContentLoaded", () => {
-        new ImageSlider();
-      });
-    </script>
-
     <footer class="footer">
       <div class="footer-content">
         <p>© 2025 Xili. All rights reserved.</p>
@@ -913,6 +788,201 @@
           <a href="/contact.html">Contact Us</a>
         </div>
       </div>
+      <div class="language-selector">
+        <select id="languageSwitcher" aria-label="Select language">
+          <option value="en">English</option>
+          <option value="es">Español</option>
+          <option value="fr">Français</option>
+          <option value="jp">Japanese</option>
+        </select>
+      </div>
     </footer>
   </body>
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      new ImageSlider();
+
+      AOS.init({
+        duration: 800,
+        once: true,
+      });
+    });
+
+    const languageSwitcher = document.getElementById("languageSwitcher");
+    if (languageSwitcher) {
+      const savedLanguage = localStorage.getItem("preferredLanguage");
+      const currentPath = window.location.pathname;
+      let currentLang = "en";
+      if (currentPath.startsWith("/es/")) currentLang = "es";
+      else if (currentPath.startsWith("/fr/")) currentLang = "fr";
+      else if (currentPath.startsWith("/jp/")) currentLang = "jp";
+      languageSwitcher.value = savedLanguage || currentLang;
+      console.log(
+        `Language switcher initialized with value: ${languageSwitcher.value}`
+      );
+
+      languageSwitcher.addEventListener("change", function () {
+        const selectedLanguage = this.value;
+        localStorage.setItem("preferredLanguage", selectedLanguage);
+        const languagePaths = {
+          en: "/index.html",
+          es: "/es/index.html",
+          fr: "/fr/index.html",
+          jp: "/jp/index.html",
+        };
+        const newPath = languagePaths[selectedLanguage] || "/index.html";
+        window.location.href =
+          newPath + window.location.search + window.location.hash;
+      });
+    } else {
+      console.error("Language switcher element not found");
+    }
+
+    document.querySelectorAll(".download-btn").forEach((button) => {
+      button.addEventListener("click", function (e) {
+        e.preventDefault();
+
+        const ripple = document.createElement("span");
+        const rect = button.getBoundingClientRect();
+        const size = Math.max(rect.width, rect.height);
+        const x = e.clientX - rect.left - size / 2;
+        const y = e.clientY - rect.top - size / 2;
+
+        ripple.style.width = ripple.style.height = size + "px";
+        ripple.style.left = x + "px";
+        ripple.style.top = y + "px";
+        ripple.classList.add("ripple");
+
+        button.style.position = "relative";
+        button.style.overflow = "hidden";
+
+        const existingRipple = button.querySelector(".ripple");
+        if (existingRipple) {
+          existingRipple.remove();
+        }
+
+        button.appendChild(ripple);
+
+        setTimeout(() => {
+          window.open(button.href, "_blank");
+        }, 300);
+      });
+    });
+
+    const observerOptions = {
+      threshold: 0.1,
+      rootMargin: "0px 0px -50px 0px",
+    };
+
+    const observer = new IntersectionObserver((entries, observer) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("visible");
+          observer.unobserve(entry.target);
+        }
+      });
+    }, observerOptions);
+
+    document.querySelectorAll(".feature-card, .device-slider").forEach((el) => {
+      el.style.transition = "all 0.6s ease";
+      observer.observe(el);
+    });
+
+    class ImageSlider {
+      constructor() {
+        this.currentSlide = 0;
+        this.totalSlides = 4;
+        this.sliderTrack = document.getElementById("sliderTrack");
+        this.prevBtn = document.getElementById("prevBtn");
+        this.nextBtn = document.getElementById("nextBtn");
+        this.dots = document.querySelectorAll(".dot");
+        this.autoSlideInterval = null;
+
+        this.init();
+      }
+
+      init() {
+        this.prevBtn.addEventListener("click", () => this.prevSlide());
+        this.nextBtn.addEventListener("click", () => this.nextSlide());
+
+        this.dots.forEach((dot, index) => {
+          dot.addEventListener("click", () => this.goToSlide(index));
+        });
+
+        this.addTouchSupport();
+
+        this.startAutoSlide();
+
+        const slider = document.querySelector(".device-slider");
+        slider.addEventListener("mouseenter", () => this.stopAutoSlide());
+        slider.addEventListener("mouseleave", () => this.startAutoSlide());
+      }
+
+      updateSlider() {
+        const translateX = -this.currentSlide * 100;
+        this.sliderTrack.style.transform = `translateX(${translateX}%)`;
+
+        this.dots.forEach((dot, index) => {
+          dot.classList.toggle("active", index === this.currentSlide);
+        });
+      }
+
+      nextSlide() {
+        this.currentSlide = (this.currentSlide + 1) % this.totalSlides;
+        this.updateSlider();
+      }
+
+      prevSlide() {
+        this.currentSlide =
+          (this.currentSlide - 1 + this.totalSlides) % this.totalSlides;
+        this.updateSlider();
+      }
+
+      goToSlide(index) {
+        this.currentSlide = index;
+        this.updateSlider();
+      }
+
+      addTouchSupport() {
+        let startX = 0;
+        let endX = 0;
+        const slider = document.querySelector(".slider-container");
+
+        slider.addEventListener("touchstart", (e) => {
+          startX = e.touches[0].clientX;
+        });
+
+        slider.addEventListener("touchend", (e) => {
+          endX = e.changedTouches[0].clientX;
+          const difference = startX - endX;
+
+          if (Math.abs(difference) > 50) {
+            if (difference > 0) {
+              this.nextSlide();
+            } else {
+              this.prevSlide();
+            }
+          }
+        });
+      }
+
+      startAutoSlide() {
+        this.stopAutoSlide();
+        this.autoSlideInterval = setInterval(() => {
+          this.nextSlide();
+        }, 4000);
+      }
+
+      stopAutoSlide() {
+        if (this.autoSlideInterval) {
+          clearInterval(this.autoSlideInterval);
+          this.autoSlideInterval = null;
+        }
+      }
+    }
+
+    document.addEventListener("DOMContentLoaded", () => {
+      new ImageSlider();
+    });
+  </script>
 </html>
